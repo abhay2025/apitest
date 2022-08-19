@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 const mongoose = require('mongoose');
-mongoose.connect("mongodb://localhost/loginapi", {
+mongoose.connect("mongodb+srv://abhay:Abhay%40123@cluster0.xowgujp.mongodb.net/loginapi?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
