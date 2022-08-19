@@ -53,3 +53,32 @@ app.get('/user/login', async (req, res) => {
     }
 
 })
+
+app.get('/personregistration', async function (req, res) {
+    try {
+        let { username, password } = req.query;
+
+        if (username == undefined || password == undefined)
+            res.send('Please fill the fields')
+        else if (username == "" || password == "")
+            res.send('Please fill the fields')
+        else {
+
+            const user = await apiusers.findOne({ username });
+            if (user) res.status(401).send("Number is Already Registered!!");
+            else {
+                const user1 = new apiusers({
+                    username,
+                    password
+                });
+                await user1.save();
+                res.send("Registered Successfully");
+            }
+        }
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).send("Server Error");
+    }
+}
+);
